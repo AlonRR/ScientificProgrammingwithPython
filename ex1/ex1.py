@@ -15,13 +15,13 @@ class Point:
     def __str__(self):
         return f"({self.x}, {self.y})"
 
-    # if equal to other
+    # if equal to other Point
     def __eq__(self, other):
-        if type(other) is self.__class__:
+        if type(other) is not type(self):
             return False
         return self.x == other.x and self.y == other.y
 
-    # add two points
+    # add two points or add scalar
     def __add__(self, other):
         if type(other) is type(self):
             return Point(self.x + other.x, self.y + other.y)
@@ -29,17 +29,21 @@ class Point:
             return Point(self.x + other, self.y + other)
         raise TypeError("other must be a Point, int, or float")
 
-    # subtract two points
+    # subtract two points or subtract scalar
     def __sub__(self, other):
-        if type(other) is not type(self):
-            raise TypeError("other must be a Point")
-        return Point(self.x - other.x, self.y - other.y)
+        if type(other) in [int, float]:
+            return Point(self.x - other, self.y - other)
+        if type(other) is type(self):
+            return Point(self.x - other.x, self.y - other.y)
+        raise TypeError("other must be a Point, int, or float")
 
     # get x or y
     def __getitem__(self, index):
-        if index == 0 or index == "x" or index == "X":
+        if type(index) is str:
+            index = index.lower()
+        if index == 0 or index == "x":
             return self.x
-        if index == 1 or index == "y" or index == "Y":
+        if index == 1 or index == "y":
             return self.y
         raise IndexError("Index out of range")
 
