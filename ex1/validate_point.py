@@ -1,5 +1,5 @@
 # %%
-from ex1 import Point
+from point import Point
 # Create points
 p1 = Point(3, 4)
 p2 = Point(1, 2)
