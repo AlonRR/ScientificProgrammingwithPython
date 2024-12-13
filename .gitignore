@@ -162,3 +162,7 @@ cython_debug/
 #.idea/
 *.docx
 *.pdf
+*.vs*
+.ruff*
+uv.lock
+.python-version
